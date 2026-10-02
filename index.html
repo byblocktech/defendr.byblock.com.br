@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defendr | ByBlock Tech</title>
+    <style>
+        /* ==========================================================================
+           Variáveis e Reset
+           ========================================================================== */
+        :root {
+            --bg-color: #000000;
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --accent-color: #2997ff;
+            --accent-hover: #147ce5;
+            --button-bg: #ffffff;
+            --button-text: #000000;
+            --glass-bg: rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           Navegação (Estilo Glassmorphism Apple)
+           ========================================================================== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 48px;
+            background: var(--glass-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav .logo {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        /* ==========================================================================
+           Hero Section
+           ========================================================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            padding-top: 48px; /* Espaço do nav */
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+            background: linear-gradient(180deg, #fff, #a1a1a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.2s;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 4vw, 28px);
+            font-weight: 500;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+            letter-spacing: -0.01em;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.4s;
+        }
+
+        /* ==========================================================================
+           Botões e Links
+           ========================================================================== */
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.6s;
+        }
+
+        .btn-primary {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            padding: 14px 28px;
+            border-radius: 980px; /* Arredondamento extremo típico da Apple */
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+            background-color: #e8e8ed;
+            box-shadow: 0 4px 14px rgba(255, 255, 255, 0.1);
+        }
+
+        .link-secondary {
+            color: var(--accent-color);
+            font-size: 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .link-secondary:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* ==========================================================================
+           Rodapé
+           ========================================================================== */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1s;
+        }
+
+        /* ==========================================================================
+           Animações (Keyframes)
+           ========================================================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Navegação Superior -->
+    <nav>
+        <a href="#" class="logo">ByBlock Tech</a>
+    </nav>
+
+    <!-- Área Principal (Hero) -->
+    <main class="hero">
+        <h1 class="hero-title">Defendr.</h1>
+        <p class="hero-subtitle">Segurança de outro nível. Simples assim.</p>
+        
+        <div class="cta-container">
+            <!-- Link direto para a página de releases no GitHub -->
+            <a href="https://github.com/byblocktech/defendr_new/releases" class="btn-primary" target="_blank" rel="noopener noreferrer">
+                Baixar Versão Mais Recente
+            </a>
+            <a href="https://github.com/byblocktech/defendr_new" class="link-secondary" target="_blank" rel="noopener noreferrer">
+                Ver código fonte no GitHub ↗
+            </a>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; <span id="year"></span> ByBlock Tech. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Atualiza o ano no rodapé dinamicamente
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Efeito sutil de parallax ao mover o mouse (opcional, dá um toque premium)
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 10;
+            const y = (e.clientY / window.innerHeight - 0.5) * 10;
+            
+            const title = document.querySelector('.hero-title');
+            if(title) {
+                title.style.transform = `translate(${x}px, ${y}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
