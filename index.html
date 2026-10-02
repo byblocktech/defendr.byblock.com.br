@@ -1,23 +1,44 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defendr | ByBlock Tech</title>
+
+    <meta name="description" content="defendr: software de bloqueio de sites pornográficos, maliciosos, fraudulentos e indesejados. Mais de 1 milhão de domínios cadastrados. Disponível para Windows.">
+
+    <meta name="theme-color" content="#f5f5f7">
+
+    <title>defendr — Proteção digital simplificada | ByBlock Tech</title>
+
     <style>
-        /* ==========================================================================
-           Variáveis e Reset
-           ========================================================================== */
+        /* =========================================================
+           DESIGN SYSTEM
+        ========================================================= */
+
         :root {
-            --bg-color: #000000;
-            --text-primary: #f5f5f7;
-            --text-secondary: #86868b;
-            --accent-color: #2997ff;
-            --accent-hover: #147ce5;
-            --button-bg: #ffffff;
-            --button-text: #000000;
-            --glass-bg: rgba(0, 0, 0, 0.7);
+            --background: #f5f5f7;
+            --surface: #ffffff;
+            --surface-secondary: #fbfbfd;
+
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-tertiary: #86868b;
+
+            --accent: #0071e3;
+            --accent-hover: #0077ed;
+
+            --border: #e8e8ed;
+
+            --radius: 24px;
+            --radius-small: 16px;
+
+            --max-width: 1100px;
         }
+
+        /* =========================================================
+           RESET
+        ========================================================= */
 
         * {
             margin: 0;
@@ -25,200 +46,1422 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "SF Pro Display",
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            background: var(--background);
             color: var(--text-primary);
+
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+
             overflow-x: hidden;
         }
 
-        /* ==========================================================================
-           Navegação (Estilo Glassmorphism Apple)
-           ========================================================================== */
+        a {
+            color: inherit;
+        }
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+
         nav {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            height: 48px;
-            background: var(--glass-bg);
+            height: 64px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(245, 245, 247, 0.78);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        nav .logo {
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
+        .nav-content {
+            width: min(100% - 48px, var(--max-width));
 
-        /* ==========================================================================
-           Hero Section
-           ========================================================================== */
-        .hero {
-            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-download {
+            color: var(--accent) !important;
+            font-weight: 600;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 760px;
+            padding: 150px 24px 110px;
+
+            display: flex;
+            align-items: center;
+            flex-direction: column;
             justify-content: center;
+
             text-align: center;
-            padding: 0 20px;
-            padding-top: 48px; /* Espaço do nav */
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+
+            width: 700px;
+            height: 500px;
+
+            top: 80px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            background: radial-gradient(
+                ellipse,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(245, 245, 247, 0) 70%
+            );
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 14px;
+
+            border: 1px solid var(--border);
+            border-radius: 100px;
+
+            background: rgba(255, 255, 255, 0.65);
+
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 500;
+
+            margin-bottom: 32px;
+
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #30a46c;
         }
 
         .hero-title {
-            font-size: clamp(48px, 8vw, 80px);
+            font-size: clamp(64px, 11vw, 112px);
             font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 10px;
-            background: linear-gradient(180deg, #fff, #a1a1a6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.2s;
+            letter-spacing: -0.075em;
+            line-height: 1;
+
+            margin-bottom: 26px;
+
+            animation: fadeUp 0.8s ease 0.1s both;
+        }
+
+        .hero-title span {
+            color: var(--text-tertiary);
         }
 
         .hero-subtitle {
-            font-size: clamp(20px, 4vw, 28px);
-            font-weight: 500;
+            max-width: 680px;
+            margin: 0 auto 40px;
+
             color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 40px;
-            letter-spacing: -0.01em;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.4s;
+
+            font-size: clamp(19px, 3vw, 25px);
+            font-weight: 400;
+            line-height: 1.45;
+            letter-spacing: -0.025em;
+
+            animation: fadeUp 0.8s ease 0.2s both;
         }
 
-        /* ==========================================================================
-           Botões e Links
-           ========================================================================== */
+        .hero-subtitle strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
         .cta-container {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 16px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.6s;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+
+            animation: fadeUp 0.8s ease 0.3s both;
         }
 
         .btn-primary {
-            background-color: var(--button-bg);
-            color: var(--button-text);
-            padding: 14px 28px;
-            border-radius: 980px; /* Arredondamento extremo típico da Apple */
-            font-size: 17px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            padding: 15px 26px;
+
+            border-radius: 100px;
+
+            background: var(--accent);
+            color: #ffffff;
+
+            font-size: 15px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
+
+            transition:
+                background 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
         }
 
         .btn-primary:hover {
-            transform: scale(1.02);
-            background-color: #e8e8ed;
-            box-shadow: 0 4px 14px rgba(255, 255, 255, 0.1);
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 113, 227, 0.18);
         }
 
-        .link-secondary {
-            color: var(--accent-color);
+        .btn-secondary {
+            color: var(--accent);
             font-size: 15px;
+            font-weight: 500;
             text-decoration: none;
-            transition: color 0.3s;
+
+            transition: color 0.2s ease;
         }
 
-        .link-secondary:hover {
+        .btn-secondary:hover {
             color: var(--accent-hover);
             text-decoration: underline;
         }
 
-        /* ==========================================================================
-           Rodapé
-           ========================================================================== */
-        footer {
-            padding: 40px 20px;
-            text-align: center;
-            color: var(--text-secondary);
+        .hero-note {
+            margin-top: 24px;
+
+            color: var(--text-tertiary);
             font-size: 12px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 1s;
+
+            animation: fadeUp 0.8s ease 0.4s both;
         }
 
-        /* ==========================================================================
-           Animações (Keyframes)
-           ========================================================================== */
-        @keyframes fadeInUp {
+        /* =========================================================
+           GENERAL SECTIONS
+        ========================================================= */
+
+        .section {
+            padding: 100px 24px;
+        }
+
+        .section-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            max-width: 650px;
+            margin: 0 auto 55px;
+            text-align: center;
+        }
+
+        .section-label {
+            color: var(--text-tertiary);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.1;
+            letter-spacing: -0.055em;
+            font-weight: 650;
+
+            margin-bottom: 18px;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* =========================================================
+           PROTECTION / STATISTICS
+        ========================================================= */
+
+        .protection-section {
+            background: var(--surface);
+        }
+
+        .stats-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+
+            padding: 55px;
+
+            background: var(--surface-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .stats-content {
+            max-width: 570px;
+        }
+
+        .stats-number {
+            display: block;
+
+            font-size: clamp(55px, 8vw, 85px);
+            line-height: 1;
+            letter-spacing: -0.07em;
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+        .stats-number span {
+            color: var(--accent);
+        }
+
+        .stats-title {
+            font-size: 23px;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+
+            margin-bottom: 12px;
+        }
+
+        .stats-description {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .stats-icon {
+            width: 150px;
+            height: 150px;
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 32px;
+        }
+
+        .stats-icon svg {
+            width: 72px;
+            height: 72px;
+            color: var(--text-primary);
+        }
+
+        /* =========================================================
+           CATEGORIES
+        ========================================================= */
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .category-card {
+            padding: 32px;
+
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-small);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .category-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f5f5f7;
+            border-radius: 12px;
+
+            margin-bottom: 22px;
+        }
+
+        .category-icon svg {
+            width: 21px;
+            height: 21px;
+            stroke: var(--text-primary);
+        }
+
+        .category-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+
+            margin-bottom: 10px;
+        }
+
+        .category-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        /* =========================================================
+           HOW IT WORKS
+        ========================================================= */
+
+        .how-section {
+            background: var(--surface);
+        }
+
+        .how-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+
+            align-items: center;
+
+            padding: 55px;
+
+            background: var(--surface-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .how-content h3 {
+            font-size: 30px;
+            line-height: 1.2;
+            letter-spacing: -0.045em;
+
+            margin-bottom: 20px;
+        }
+
+        .how-content p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .how-list {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .how-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .how-number {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .how-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .how-item p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* =========================================================
+           PLATFORM
+        ========================================================= */
+
+        .platform-section {
+            padding: 100px 24px;
+        }
+
+        .platform-card {
+            padding: 65px 35px;
+
+            text-align: center;
+
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .platform-icon {
+            width: 64px;
+            height: 64px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f5f5f7;
+            border-radius: 18px;
+
+            margin: 0 auto 25px;
+        }
+
+        .platform-icon svg {
+            width: 34px;
+            height: 34px;
+            stroke: var(--text-primary);
+        }
+
+        .platform-card h2 {
+            font-size: clamp(28px, 5vw, 40px);
+            letter-spacing: -0.05em;
+            margin-bottom: 16px;
+        }
+
+        .platform-card > p {
+            max-width: 600px;
+            margin: 0 auto;
+
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .platform-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 9px 15px;
+            margin-top: 28px;
+
+            background: #f5f5f7;
+            border-radius: 100px;
+
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .platform-status span {
+            width: 7px;
+            height: 7px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* =========================================================
+           FINAL CTA
+        ========================================================= */
+
+        .final-cta {
+            padding: 100px 24px;
+
+            background: #1d1d1f;
+            color: #ffffff;
+
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(35px, 6vw, 55px);
+            letter-spacing: -0.06em;
+            line-height: 1.1;
+
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            max-width: 500px;
+            margin: 0 auto 32px;
+
+            color: #a1a1a6;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .final-cta .btn-primary {
+            background: #ffffff;
+            color: #1d1d1f;
+        }
+
+        .final-cta .btn-primary:hover {
+            background: #e8e8ed;
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            padding: 35px 24px;
+
+            background: var(--background);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+        }
+
+        .footer-info {
+            color: var(--text-tertiary);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* =========================================================
+           ANIMATIONS
+        ========================================================= */
+
+        @keyframes fadeUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(24px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
         }
 
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 700px) {
+            .nav-content {
+                width: calc(100% - 36px);
+            }
+
+            .nav-links {
+                gap: 18px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: 700px;
+                padding-top: 120px;
+            }
+
+            .section {
+                padding: 75px 20px;
+            }
+
+            .stats-card {
+                padding: 35px 25px;
+            }
+
+            .stats-icon {
+                width: 100px;
+                height: 100px;
+                border-radius: 24px;
+            }
+
+            .stats-icon svg {
+                width: 50px;
+                height: 50px;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .how-card {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 35px 25px;
+            }
+
+            .platform-section {
+                padding: 75px 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-links {
+                margin-top: 8px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .hero-title {
+                font-size: 65px;
+            }
+
+            .cta-container {
+                flex-direction: column;
+            }
+
+            .stats-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stats-icon {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-    <!-- Barra de Navegação Superior -->
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================== -->
+
     <nav>
-        <a href="#" class="logo">ByBlock Tech</a>
+        <div class="nav-content">
+
+            <a href="#" class="logo">ByBlock Tech</a>
+
+            <div class="nav-links">
+                <a href="#protecao">Proteção</a>
+                <a href="#funcionamento">Como funciona</a>
+                <a href="#plataforma">Plataforma</a>
+
+                <a
+                    href="https://github.com/byblocktech/defendr_new/releases"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="nav-download"
+                >
+                    Download ↗
+                </a>
+            </div>
+
+        </div>
     </nav>
 
-    <!-- Área Principal (Hero) -->
-    <main class="hero">
-        <h1 class="hero-title">Defendr.</h1>
-        <p class="hero-subtitle">Segurança de outro nível. Simples assim.</p>
-        
-        <div class="cta-container">
-            <!-- Link direto para a página de releases no GitHub -->
-            <a href="https://github.com/byblocktech/defendr_new/releases" class="btn-primary" target="_blank" rel="noopener noreferrer">
-                Baixar Versão Mais Recente
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    Proteção digital para Windows
+                </div>
+
+                <h1 class="hero-title">
+                    defendr<span>.</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Navegue com mais tranquilidade.
+                    <strong>Menos ameaças, mais controle.</strong>
+                </p>
+
+                <div class="cta-container">
+
+                    <a
+                        href="https://github.com/byblocktech/defendr_new/releases"
+                        class="btn-primary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Baixar para Windows
+                        <span aria-hidden="true">↓</span>
+                    </a>
+
+                    <a
+                        href="https://github.com/byblocktech/defendr_new"
+                        class="btn-secondary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Explorar código-fonte ↗
+                    </a>
+
+                </div>
+
+                <p class="hero-note">
+                    Atualmente disponível para Windows.
+                    Portabilidade para Linux em desenvolvimento.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PROTECTION / DATABASE
+        ====================================================== -->
+
+        <section class="section protection-section" id="protecao">
+
+            <div class="section-container">
+
+                <div class="section-heading reveal">
+
+                    <p class="section-label">Proteção abrangente</p>
+
+                    <h2 class="section-title">
+                        Uma camada a mais de segurança.
+                    </h2>
+
+                    <p class="section-description">
+                        O defendr ajuda a impedir o acesso a sites
+                        associados a conteúdos indesejados, fraudes
+                        e ameaças digitais.
+                    </p>
+
+                </div>
+
+                <div class="stats-card reveal">
+
+                    <div class="stats-content">
+
+                        <span class="stats-number">
+                            1<span>M+</span>
+                        </span>
+
+                        <h3 class="stats-title">
+                            Mais de um milhão de sites cadastrados.
+                        </h3>
+
+                        <p class="stats-description">
+                            Uma extensa base de domínios destinados ao
+                            bloqueio, abrangendo sites pornográficos,
+                            maliciosos, fraudulentos, páginas de scam
+                            e outras categorias de conteúdo indesejado.
+                            O objetivo é reduzir a exposição a páginas
+                            potencialmente prejudiciais durante a navegação.
+                        </p>
+
+                    </div>
+
+                    <div class="stats-icon" aria-hidden="true">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.4"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             BLOCKING CATEGORIES
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="section-container">
+
+                <div class="section-heading reveal">
+
+                    <p class="section-label">O que o defendr bloqueia</p>
+
+                    <h2 class="section-title">
+                        Menos exposição.
+                        Mais tranquilidade.
+                    </h2>
+
+                    <p class="section-description">
+                        O bloqueio contempla diferentes categorias de
+                        sites que podem representar riscos ou não serem
+                        apropriados para determinados ambientes.
+                    </p>
+
+                </div>
+
+
+                <div class="categories-grid">
+
+                    <!-- Pornografia -->
+
+                    <article class="category-card reveal">
+
+                        <div class="category-icon">
+
+                            <svg viewBox="0 0 24 24" fill="none"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-linejoin="round">
+
+                                <rect x="3" y="3" width="18" height="18" rx="4"/>
+                                <path d="M8 12h8"/>
+                                <path d="M12 8v8"/>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>Conteúdo adulto</h3>
+
+                        <p>
+                            Bloqueio de sites pornográficos e páginas
+                            com conteúdo adulto, contribuindo para
+                            ambientes digitais mais controlados.
+                        </p>
+
+                    </article>
+
+
+                    <!-- Malware -->
+
+                    <article class="category-card reveal">
+
+                        <div class="category-icon">
+
+                            <svg viewBox="0 0 24 24" fill="none"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-linejoin="round">
+
+                                <path d="M12 3 3 20h18L12 3z"/>
+                                <path d="M12 9v4"/>
+                                <path d="M12 17h.01"/>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>Sites maliciosos</h3>
+
+                        <p>
+                            Bloqueio de domínios associados a ameaças
+                            digitais, como distribuição de malware
+                            e páginas potencialmente prejudiciais.
+                        </p>
+
+                    </article>
+
+
+                    <!-- Scam -->
+
+                    <article class="category-card reveal">
+
+                        <div class="category-icon">
+
+                            <svg viewBox="0 0 24 24" fill="none"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-linejoin="round">
+
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 8v4"/>
+                                <path d="M12 16h.01"/>
+                                <path d="M8 3.5 6 2"/>
+                                <path d="m16 3.5 2-1.5"/>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>Scams e fraudes</h3>
+
+                        <p>
+                            Bloqueio de páginas relacionadas a golpes,
+                            fraudes online e esquemas destinados a
+                            enganar usuários.
+                        </p>
+
+                    </article>
+
+
+                    <!-- Phishing -->
+
+                    <article class="category-card reveal">
+
+                        <div class="category-icon">
+
+                            <svg viewBox="0 0 24 24" fill="none"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-linejoin="round">
+
+                                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                                <path d="m3 7 9 6 9-6"/>
+                                <path d="m9 11-3 3"/>
+                                <path d="m15 11 3 3"/>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>Phishing</h3>
+
+                        <p>
+                            Bloqueio de páginas associadas a tentativas
+                            de roubo de informações e falsificação
+                            de serviços legítimos.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             HOW IT WORKS
+        ====================================================== -->
+
+        <section class="section how-section" id="funcionamento">
+
+            <div class="section-container">
+
+                <div class="section-heading reveal">
+
+                    <p class="section-label">Simplicidade</p>
+
+                    <h2 class="section-title">
+                        Proteção sem complicação.
+                    </h2>
+
+                    <p class="section-description">
+                        Uma experiência pensada para manter o bloqueio
+                        de sites simples e acessível.
+                    </p>
+
+                </div>
+
+
+                <div class="how-card reveal">
+
+                    <div class="how-content">
+
+                        <h3>
+                            Você utiliza seu computador.
+                            O defendr cuida do bloqueio.
+                        </h3>
+
+                        <p>
+                            O defendr foi desenvolvido para atuar como
+                            uma ferramenta de controle de acesso a
+                            domínios. Sua proposta é reduzir a exposição
+                            a conteúdos e páginas cadastrados em sua
+                            base de bloqueio, sem exigir que o usuário
+                            procure manualmente cada endereço.
+                        </p>
+
+                    </div>
+
+
+                    <div class="how-list">
+
+                        <div class="how-item">
+
+                            <span class="how-number">01</span>
+
+                            <div>
+                                <h4>Instale o defendr</h4>
+                                <p>
+                                    Baixe a versão disponível para
+                                    Windows e configure o software.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="how-item">
+
+                            <span class="how-number">02</span>
+
+                            <div>
+                                <h4>Utilize a proteção</h4>
+                                <p>
+                                    O mecanismo de filtragem utiliza
+                                    a base de domínios cadastrados
+                                    para realizar os bloqueios.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="how-item">
+
+                            <span class="how-number">03</span>
+
+                            <div>
+                                <h4>Acompanhe os bloqueios</h4>
+                                <p>
+                                    Consulte as informações de
+                                    atividade disponibilizadas
+                                    pelo software.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PLATFORM
+        ====================================================== -->
+
+        <section class="platform-section" id="plataforma">
+
+            <div class="section-container">
+
+                <div class="platform-card reveal">
+
+                    <div class="platform-icon">
+
+                        <svg viewBox="0 0 24 24" fill="none"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+
+                            <rect x="3" y="4" width="18" height="13" rx="2"/>
+                            <path d="M8 21h8"/>
+                            <path d="M12 17v4"/>
+
+                        </svg>
+
+                    </div>
+
+                    <p class="section-label">Disponibilidade</p>
+
+                    <h2>
+                        Desenvolvido para Windows.
+                    </h2>
+
+                    <p>
+                        Atualmente, o defendr está disponível para
+                        computadores com Windows. Estamos trabalhando
+                        na portabilidade para Linux, com o objetivo
+                        de expandir a disponibilidade do software
+                        para outras plataformas.
+                    </p>
+
+                    <div class="platform-status">
+                        <span></span>
+                        Windows disponível · Linux em desenvolvimento
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FINAL CTA
+        ====================================================== -->
+
+        <section class="final-cta">
+
+            <h2>
+                Mais controle.<br>
+                Menos preocupações.
+            </h2>
+
+            <p>
+                Conheça o defendr e tenha uma camada adicional
+                de controle sobre os sites acessados no seu computador.
+            </p>
+
+            <a
+                href="https://github.com/byblocktech/defendr_new/releases"
+                class="btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Baixar defendr
+                <span aria-hidden="true">↗</span>
             </a>
-            <a href="https://github.com/byblocktech/defendr_new" class="link-secondary" target="_blank" rel="noopener noreferrer">
-                Ver código fonte no GitHub ↗
-            </a>
-        </div>
+
+        </section>
+
     </main>
 
-    <!-- Rodapé -->
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
     <footer>
-        <p>&copy; <span id="year"></span> ByBlock Tech. Todos os direitos reservados.</p>
+
+        <div class="footer-content">
+
+            <div>
+
+                <div class="footer-brand">
+                    ByBlock Tech
+                </div>
+
+                <p class="footer-info">
+                    © <span id="year"></span> ByBlock Tech.
+                    Todos os direitos reservados.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a
+                    href="https://github.com/byblocktech/defendr_new"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub ↗
+                </a>
+
+                <a
+                    href="https://github.com/byblocktech/defendr_new/releases"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Releases ↗
+                </a>
+
+            </div>
+
+        </div>
+
     </footer>
 
-    <!-- Scripts -->
-    <script>
-        // Atualiza o ano no rodapé dinamicamente
-        document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Efeito sutil de parallax ao mover o mouse (opcional, dá um toque premium)
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 10;
-            const y = (e.clientY / window.innerHeight - 0.5) * 10;
-            
-            const title = document.querySelector('.hero-title');
-            if(title) {
-                title.style.transform = `translate(${x}px, ${y}px)`;
-            }
-        });
+    <!-- =========================================================
+         SCRIPTS
+    ========================================================== -->
+
+    <script>
+
+        // Ano dinâmico no rodapé
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        // Animações de entrada ao rolar a página
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+
+            const observer = new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("visible");
+
+                            observer.unobserve(entry.target);
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+
+        } else {
+
+            revealElements.forEach(element => {
+                element.classList.add("visible");
+            });
+
+        }
+
     </script>
+
 </body>
 </html>
